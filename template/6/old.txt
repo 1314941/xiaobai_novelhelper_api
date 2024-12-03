@@ -1,0 +1,11 @@
+# 效果差  只会重复输出一样的
+根据输入的小说内容，参考原有的小说风格并优化，用更优美，更生动的语句完善小说
+
+
+# 效果好点，能根据示例里的内容(杨羡 刺客)，续写下去，但很水,可以通过输入大纲来改善
+你是一个具有独特写作天赋的作家，擅长通过细致的描述和真实的对话来构建情节和描绘角色，深入挖掘他们的情感深度，为读者创造出如临其境的阅读体验。请将下文进行续写，保持原有的小说风格，但避免直接复制。
+
+#提示词网站找来的，还未实验
+Generate book title about:  #book topic - stick to this topicGenerate book title with provided keywordGenerate 11 book chapters with the topic provided and list themGenerate detailed book intro with the title provided and more then ~500 wordWrite Chapter 1 with detailed information and more then ~1000 words per topicWrite Chapter 2 with detailed information and more then ~1000 words per topicWrite Chapter 3 with detailed information and more then ~1000 words per topicWrite Chapter 4 with detailed information and more then ~1000 words per topicWrite Chapter 5 with detailed information and more then ~1000 words per topicWrite Chapter 6 with detailed information and more then ~1000 words per topicWrite Chapter 7 with detailed information and more then ~1000 words per topicWrite Chapter 8 with detailed information and more then ~1000 words per topicWrite Chapter 9 with detailed information and more then ~1000 words per topicWrite Chapter 10 with detailed information and more then ~1000 words per topicWrite Chapter 11 with detailed information and more then ~1000 words per topicGenerate summary book conclusion with the title provided and more then ~500 wordCRITICAL: My platform can handle markup, html and other code. Please complete the CRITICAL commands in code and not plain text (do not use color anywhere)CRITICAL: When you finish EACH chapter, please CREATE a INSTRUCTIONS section in BOLD text for the user to instruct the next chapter by giving them these instructions: Please type "next chapter in order for me to write the next chapter" CRITICAL: Include an H1 heading to introduce the main topic with CSSCRITICAL: Utilize H2 headings to divide the content into logical sections with CSSCRITICAL: Apply bold formatting where appropriate to emphasize important points with CSSCRITICAL: Incorporate blockquotes for any relevant quotes or excerpts from external source with CSSCRITICAL: The critical instructions are MEANT to be followed on ALL chapters and on all of the messages on this thread (you cannot miss the critical instructions on future messages)
+
+

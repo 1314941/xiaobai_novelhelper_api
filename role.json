@@ -1,0 +1,484 @@
+{
+  "system": [
+    {
+      "id": 1,
+      "description": "根据输出的网络小说情节,生成符合小说情节的人物卡片,人物卡片记录着不同角色的性格,外貌和经历,并提供一些提示信息。",
+      "role": "人物卡生成器",
+      "optimization": "优化人物卡生成器，可以通过增加角色性格、外貌和经历的描述深度，以及提供更多提示信息来丰富人物卡的内容。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 3000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.5,
+        "num_ctx": 10240,
+        "repeat_penalty": 1.5,
+        "presence_penalty": 1.5,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "随机性降低,人物更符合小说情节"
+    },
+    {
+      "id": 2,
+      "description": "根据输入的网络小说人物卡片和小说情节,生成符合小说情节的大纲,包含主要人物的故事线,主要事件,注意要符合给定角色的性格,外貌和经历。",
+      "role": "大纲生成器",
+      "optimization": "优化大纲生成器，可以通过更细致地分析人物卡中的角色性格、外貌和经历，以及更准确地捕捉主要事件和故事线来提高大纲的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 3000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "上下文大点,记忆力更好"
+    },
+    {
+      "id": 3,
+      "description": "只能输出一章.根据输入的小说大纲和上一章内容,生成下一章细纲.每张字数在1500-3000字之间,要预留出一些字数给细节描写。",
+      "role": "细纲生成器",
+      "optimization": "优化细纲生成器，可以通过更精确地遵循小说大纲，以及更细致地分析上一章内容来提高细纲的连贯性和逻辑性。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "特意标出爽点，会导致章节撰写器输出的内容一段一段的，直接标出爽点和细节，很出戏"
+    },
+    {
+      "id": 4,
+      "description": "只能输出流畅的一章,不能输出让读者觉得出戏的字眼,如在进行环境描写前加上'环境描写'.根据输入的章节情节,写出下一章,字数在1500-3000字之间,并保持情节的连贯性和逻辑性。增加故事的生动性和吸引力，让读者更容易沉浸其中。",
+      "role": "章节撰写器",
+      "optimization": "优化章节撰写器，可以通过更细致地遵循细纲，以及更生动地描写环境和人物表情、动作来提高章节的吸引力和沉浸感。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 3000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.5,
+        "repeat_penalty": 1.2,
+        "num_ctx": 10240,
+        "presence_penalty": 1.5,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "适当减少随机性,更符合小说情节."
+    },
+    {
+      "id": 5,
+      "description": "根据小说章节生成剧本，包括标题、主要角色、情节、爽点、波动，并适当添加和删除。",
+      "role": "章节提取器",
+      "optimization": "优化剧本生成器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高剧本的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于生成剧本的工具，可以优化剧本的质量。"
+    },
+    {
+      "id": 6,
+      "description": "根据输入的小说内容，参考原有的小说风格并优化，用更优美，更生动的语句完善小说",
+      "role": "文笔优化器",
+      "optimization": "优化剧本生成器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高剧本的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 20,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化文笔的工具，可以优化剧本的质量。"
+    },
+    {
+      "id": 7,
+      "description": "根据输入的小说大纲，生成符合小说情节的场景描述。",
+      "role": "细纲转场景器",
+      "optimization": "优化场景生成器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高场景的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于生成场景的工具，可以优化场景的质量。"
+    },
+    {
+      "id": 8,
+      "description": " 根据输入的场景描述，生成符合小说情节的剧本。",
+      "role": "场景填充器",
+      "optimization": "优化剧本生成器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高剧本的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于生成剧本的工具，可以优化剧本的质量。"
+    },
+    {
+      "id": 9,
+      "description": "根据输入的剧本，添加符合小说情节的角色刻画。",
+      "role": "角色刻画器",
+      "optimization": " 优化角色刻画器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高角色刻画的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于生成角色刻画的工具，可以优化角色刻画的质量。"
+    },
+    {
+      "id": 10,
+      "description": " 根据输入的角色刻画，生成符合小说情节的剧本。",
+      "role": "对话润色器",
+      "optimization": "优化剧本生成器，可以通过更细致地分析人物卡，以及更准确地捕捉主要事件和故事线来提高剧本的质量。",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 11,
+      "description": "解析场景大纲，生成包含多个场景的json",
+      "role": "场景大纲转json器",
+      "optimization": "",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.1,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 4096,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": ""
+    },
+    {
+      "id": 12,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "章节清洗器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 13,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "大纲反馈器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 500,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 14,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "老师批改器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 500,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 15,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "章节优化器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 16,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "情节填充器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 2000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 17,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "翻译家",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 5000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 18,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "图谱提取器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 5000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 18,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "图谱提取器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 5000,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 10240,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    },
+    {
+      "id": 19,
+      "description": "去掉无关的字词，生成符合小说情节的剧本。",
+      "role": "文本填充器",
+      "optimization": " 优化章节清洗器，可以通过",
+      "options": {
+        "num_keep": 5,
+        "num_predict": 15,
+        "top_k": 20,
+        "top_p": 0.9,
+        "repeat_last_n": 33,
+        "temperature": 0.8,
+        "repeat_penalty": 1.2,
+        "presence_penalty": 1.5,
+        "num_ctx": 4096,
+        "frequency_penalty": 1.0,
+        "stop": ["user:", "\t", "十日终焉"]
+      },
+      "template":{
+        "user":"",
+        "assistant":""
+      },
+      "comment": "这是一个用于优化剧本对话的工具，可以优化剧本对话的质量。"
+    }
+  ]
+}
