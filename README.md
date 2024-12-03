@@ -7,6 +7,8 @@
 >加上人物卡信息\n
 >发送给ollama\n
 >返回信息
+
+
 可惜，倒在了第一步，
 >[2024-12-03T10:46:34.074Z] uvicorn.access INFO:     127.0.0.1:8856 - "POST /completions/ HTTP/1.1" 422
 
