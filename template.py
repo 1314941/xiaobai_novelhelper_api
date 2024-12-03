@@ -1,6 +1,9 @@
 import os
+<<<<<<< HEAD
 import json
 
+=======
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
 
 path="template/"
 
@@ -9,6 +12,7 @@ assistant="/ai.txt"
 prompt="/prompt.txt"
 
 
+<<<<<<< HEAD
 # 读取JSON文件
 class RoleData:
     def __init__(self):
@@ -32,6 +36,8 @@ class RoleData:
 
 
 
+=======
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
 
 def add_template(data):
     for item in data:

@@ -200,23 +200,48 @@ def chat_ollama_stream(tokens,prefix="续写"):
 # @check_timestamp
 def chat_ollama_stream_post(message:str,role:dict):
     #改为从文件读取
+<<<<<<< HEAD
   
+=======
+    # options={
+    #     "num_keep": 5,  # 保留的候选数量
+    #     "num_predict": 500,  # 预测的候选数量
+    #     "top_k": 20,  # 选择的候选数量
+    #     "top_p": 0.9,  # 选择的候选概率
+    #     "repeat_last_n": 33,  # 重复的候选数量
+    #     "temperature": 0.8,  # 温度参数
+    #     "repeat_penalty": 1.2,  # 重复惩罚参数
+    #     "presence_penalty": 1.5,  # 存在惩罚参数
+    #     "frequency_penalty": 1.0,  # 频率惩罚参数
+    #     "stop": ["user:","\t","十日终焉"]
+    # }
+   
+
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     tokens = message
     #写入文件
     base_url ="http://localhost:11434/api/generate"
     if role['template']['user']=="none" or role['template']['assistant']=="none":
         pass
+<<<<<<< HEAD
     elif role['template']['user']=="" or role['template']['assistant']=="":
         pass
     else:
         tokens ="\n示例开始:\nuser:\n```\n"+role['template']['user'] + "\n```\nassistant:\n```\n" + role['template']['assistant']+"\n```\n示例结束。\n"+tokens
+=======
+    else:
+        tokens ="\n示例开始:\nuser:\n"+role['template']['user'] + "\nassistant:\n" + role['template']['assistant']+"\n示例结束。\n"+tokens
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     print(f"ollama chat: \n{tokens}\n")
 
     data = {
         "model": "novel:latest",
+<<<<<<< HEAD
         # "model": "yinian:latest",
         # "model": "llama3_novel:latest",
         # "model": "little_text",
+=======
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
         "system": role['description'], 
         "options": role['options'], 
         "prompt": tokens,
@@ -225,7 +250,11 @@ def chat_ollama_stream_post(message:str,role:dict):
     response = requests.post(base_url, json=data, stream=True)
     content=""
     print("ollama result:\n")
+<<<<<<< HEAD
 
+=======
+    # for line in response:
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     for line in response.iter_lines():
         line = json.loads(line.decode('utf-8'))
         if isinstance(line, dict):  # 确保 line 是字典类型  generate 接口 返回response 字段
@@ -268,6 +297,10 @@ def chat_ollama_flowise(tokens,prefix="续写"):
     data=result
     # done_reason = data.get("done_reason")
 
+<<<<<<< HEAD
+=======
+    # 提取 done 字段
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
    
    
     print("ollama result:", data)
@@ -291,6 +324,23 @@ def on_message(message, free_gen_len, chunk_len):
     # 将消息中的换行符 \n 替换为实际换行符，并去除消息两端的空白字符。
     msg = message.replace('\\n','\n').strip()
 
+<<<<<<< HEAD
+=======
+    x_temp = 0.7
+    x_top_p = 0.9
+    # 消息中提取生成参数 x_temp（温度）和 x_top_p（核采样概率），并确保它们在有效范围内
+    if "-temp=" in msg:
+        x_temp = float(msg.split("-temp=")[1].split(" ")[0])
+        msg = msg.replace("-temp="+f'{x_temp:g}', "")
+        print(f"temp: {x_temp}")
+    if "-top_p=" in msg:
+        x_top_p = float(msg.split("-top_p=")[1].split(" ")[0])
+        msg = msg.replace("-top_p="+f'{x_top_p:g}', "")
+        print(f"top_p: {x_top_p}")
+    x_temp = min(max(0, 2, x_temp), 5)
+    x_top_p = max(0, x_top_p)
+    
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     msg = msg.strip()
     outline=read_outline()
 
@@ -301,7 +351,11 @@ def on_message(message, free_gen_len, chunk_len):
     
     global data
     for role in data:
+<<<<<<< HEAD
         if role['role'] == "文本填充器":
+=======
+        if role['role'] == "文笔优化器":
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
             out = chat_ollama_stream_post(msg,role)
             break
     result_msg = out
@@ -313,10 +367,22 @@ def on_message(message, free_gen_len, chunk_len):
         "insertText": result_msg,
         "detail": result_msg
     }
+<<<<<<< HEAD
 
 
     # print(f"result: \n{result_msg}")
     running=False
+=======
+    # template={
+    #     "label": msg+"test\n",
+    #     "kind": 0,
+    #     "insertText": "test\n",
+    #     "detail": "test\n"
+    # }
+    # print(f"result: \n{result_msg}")
+    running=False
+    # return [res,template]
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     return [res]
 
 def read_outline():

@@ -54,6 +54,10 @@ input_dir = 'input'
 files = os.listdir(input_dir)
 
 # 过滤出符合条件的文件
+<<<<<<< HEAD
+=======
+# 过滤出符合条件的文件
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
 txt_files = [f for f in files if f.endswith('.txt') and f.startswith('novel_part_')]
 
 # 按文件名中的数字排序
@@ -76,7 +80,10 @@ for file in txt_files:
             with open(path+Character_Card, "a", encoding="utf-8") as f:
                 f.write(character_message)
             break
+<<<<<<< HEAD
         
+=======
+>>>>>>> 696561b1ac011b64aaadff995c1946f650c037e6
     if count%5==1:  #每5章改一次大纲
         for item in data:
             if item['role'] == "大纲生成器":
